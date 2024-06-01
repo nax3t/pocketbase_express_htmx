@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pocketbase HTMX Express Fun</title>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+</head>
+<body>
+  <h1>Welcome!</h1>
+    <% if (currentUser) { %>
+      <p>You are logged in as <%= currentUser.email %></p>
+      <p><a href="/profile" hx-boost="true">View Profile</a></p>
+      <form action="/logout" method="post" hx-boost="true">
+        <button type="submit">Logout</button>
+      </form>
+    <% } else { %>
+      <p>Please log in:</p>
+      <%- include('auth/login.ejs') %>
+    <% } %>
+</body>
+</html>
