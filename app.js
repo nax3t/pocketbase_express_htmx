@@ -73,6 +73,29 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/register", (req, res) => {
+  res.render("auth/register");
+});
+
+app.post("/register", async (req, res, next) =>{
+  try {
+    const user = await pb.collection('users').create(req.body);
+    const { email, password } = req.body;
+    pb.collection("users")
+    .authWithPassword(email, password)
+    .then((authData) => {
+      req.login({id: authData.record.id}, function(err) {
+        if (err) return next(err);
+        res.redirect('/profile');
+      });
+    })
+    .catch((err) => console.error(err));
+  } catch(err) {
+    console.error(err)
+    next(err);
+  }
+});
+
 app.get("/profile", isLoggedIn, (req, res) => {
   res.render("user/profile");
 });

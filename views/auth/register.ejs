@@ -1,0 +1,48 @@
+<form action="/register" method="post" hx-boost="true">
+  <div>
+    <label for="username">Username</label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      required
+    />
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      required
+    />
+  </div>
+  <div>
+    <label for="emailVisibility">Email Visibility</label>
+    <input
+      type="checkbox"
+      name="emailVisibility"
+      id="emailVisibility"
+      checked
+    />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      required
+    />
+  </div>
+  <div>
+    <label for="passwordConfirm">Confirm Password</label>
+    <input
+      type="password"
+      name="passwordConfirm"
+      id="passwordConfirm"
+      required
+    />
+  </div>
+  <button type="submit">Register</button>
+</form>

@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pocketbase HTMX Express Fun</title>
   <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+/>
 </head>
 <body>
   <h1>Welcome!</h1>
@@ -15,7 +19,7 @@
         <button type="submit">Logout</button>
       </form>
     <% } else { %>
-      <p>Please log in:</p>
+      <p>Please log in or <a href="/register" hx-boost="true">register</a>:</p>
       <%- include('auth/login.ejs') %>
     <% } %>
 </body>
