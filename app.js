@@ -80,16 +80,10 @@ app.get("/register", (req, res) => {
 app.post("/register", async (req, res, next) =>{
   try {
     const user = await pb.collection('users').create(req.body);
-    const { email, password } = req.body;
-    pb.collection("users")
-    .authWithPassword(email, password)
-    .then((authData) => {
-      req.login({id: authData.record.id}, function(err) {
-        if (err) return next(err);
-        res.redirect('/profile');
-      });
-    })
-    .catch((err) => console.error(err));
+    req.login({id: user.id}, function(err) {
+      if (err) return next(err);
+      res.redirect('/profile');
+    });
   } catch(err) {
     console.error(err)
     next(err);
@@ -114,7 +108,7 @@ app.post(
 );
 
 // Logout route
-app.post('/logout', function(req, res, next){
+app.post('/logout', (req, res, next) => {
   req.logout(function(err) {
     if (err) { return next(err); }
     res.redirect('/');
@@ -124,5 +118,5 @@ app.post('/logout', function(req, res, next){
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port http://localhost:${PORT}`);
 });
