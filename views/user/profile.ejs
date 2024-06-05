@@ -1,1 +1,5 @@
-<h1>Welcome, <%= currentUser.username %>!</h1>
+<div>
+  <p><%= currentUser.username %></p>
+  <p><%= currentUser.email ? currentUser.email : 'Email not visible' %></p>
+  <p><a href="#">Reset password</a></p>
+</div>

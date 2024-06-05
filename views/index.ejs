@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pocketbase HTMX Express Fun</title>
   <script src="https://unpkg.com/htmx.org@1.9.12"></script>
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
 </head>
-<body>
+
+<body class="container" id="main-content">
   <h1>Welcome!</h1>
-    <% if (currentUser) { %>
-      <p>You are logged in as <%= currentUser.username %></p>
-      <p><a href="/profile" hx-boost="true">View Profile</a></p>
-      <form action="/logout" method="post" hx-boost="true">
-        <button type="submit">Logout</button>
-      </form>
-    <% } else { %>
-      <p>Please log in or <a href="/register" hx-boost="true">register</a>:</p>
-      <%- include('auth/login.ejs') %>
-    <% } %>
+  <% if (currentUser) { %>
+  <p>You are logged in as <%= currentUser.username %>
+  </p>
+  <p><a hx-get="/profile" hx-push-url="true" hx-target="#main-content">View Profile</a></p>
+  <form action="/logout" method="post" hx-boost="true">
+    <button type="submit">Logout</button>
+  </form>
+  <% } else { %>
+    <p>Please log in or <a hx-get="/register" hx-push-url="true" hx-target="#main-content">register</a>:</p>
+    <%- include('auth/login.ejs') %>
+  <% } %>
 </body>
+
 </html>
