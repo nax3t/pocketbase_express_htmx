@@ -4,8 +4,8 @@
 <p>You are logged in as <%= currentUser.username %></p>
 
 <div id="user-profile">
-  <p><%= currentUser.username %></p>
-  <p><%= currentUser.email ? currentUser.email : 'Email not visible' %></p>
+  <p>Username: <%= currentUser.username %></p>
+  <p>Email: <%= currentUser.email ? currentUser.email : 'Email not visible' %></p>
   <p><a href="#">Reset password</a></p>
 </div>
 

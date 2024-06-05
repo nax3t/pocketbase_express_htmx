@@ -60,7 +60,7 @@ const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/login");
+  res.redirect("/");
 };
 
 // Initialize Passport and session
@@ -106,8 +106,8 @@ app.get("/login", (req, res) => {
 app.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
+    successRedirect: "/profile",
+    failureRedirect: "/",
   })
 );
 

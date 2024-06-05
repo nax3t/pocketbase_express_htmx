@@ -4,9 +4,11 @@
 <p>You are logged in as <%= currentUser.username %>
 </p>
 <div id="user-profile">
-  <a href="/profile" >
-    <button hx-get="/profile" hx-push-url="true" hx-target="user-profile" hx-swap="outerHTML" hx-select="#user-profile">View Profile</button>
-  </a>
+  <p>
+    <a href="/profile" hx-get="/profile" hx-push-url="true" hx-target="#user-profile" hx-swap="outerHTML" hx-select="#user-profile">
+      View Profile
+    </a>
+  </p>
 </div>
 <form action="/logout" method="post" hx-boost="true">
   <button type="submit">Logout</button>
