@@ -6,8 +6,12 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const crypto = require("crypto");
+const engine = require("ejs-mate");
 
 app.use(express.urlencoded({ extended: true }));
+
+app.engine("ejs", engine);
+app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
 const secretKey = crypto.randomBytes(64).toString("hex")
@@ -79,10 +83,10 @@ app.get("/register", (req, res) => {
 
 app.post("/register", async (req, res, next) =>{
   try {
-    const user = await pb.collection('users').create(req.body);
+    const user = await pb.collection("users").create(req.body);
     req.login({id: user.id}, function(err) {
       if (err) return next(err);
-      res.redirect('/profile');
+      res.redirect("/profile");
     });
   } catch(err) {
     console.error(err)
@@ -108,10 +112,10 @@ app.post(
 );
 
 // Logout route
-app.post('/logout', (req, res, next) => {
+app.post("/logout", (req, res, next) => {
   req.logout(function(err) {
     if (err) { return next(err); }
-    res.redirect('/');
+    res.redirect("/");
   });
 });
 

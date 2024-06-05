@@ -1,5 +1,18 @@
-<div>
+<% layout('boilerplate') -%>
+<h1>Welcome!</h1>
+<% if (currentUser) { %>
+<p>You are logged in as <%= currentUser.username %></p>
+
+<div id="user-profile">
   <p><%= currentUser.username %></p>
   <p><%= currentUser.email ? currentUser.email : 'Email not visible' %></p>
   <p><a href="#">Reset password</a></p>
 </div>
+
+<form action="/logout" method="post" hx-boost="true">
+  <button type="submit">Logout</button>
+</form>
+<% } else { %>
+  <p>Please log in or <a hx-get="/register" hx-push-url="true" hx-target="#main-content">register</a>:</p>
+  <%- include('auth/login.ejs') %>
+<% } %>
